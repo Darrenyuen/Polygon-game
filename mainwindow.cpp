@@ -67,10 +67,12 @@ void MainWindow::begin()
         // 处理完成
         splash.close();
     } else {
-        Dialog dialog;
-        dialog.show();
+        Dialog *dialog = new Dialog();
+        connect(this, SIGNAL(sendData(QString, QString, QString)), dialog, SLOT(receiveData(QString, QString, QString)));
+        emit sendData(this->ui->sumOfNode->text(), this->ui->valuesOfNodes->text(), this->ui->opCharsOfEdge->text());
+        dialog->show();
         this->close();
-        dialog.exec();
+        dialog->exec();
     }
 }
 

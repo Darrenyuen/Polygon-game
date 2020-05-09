@@ -24,5 +24,8 @@ private slots: //槽函数的声明
 
 private:
     Ui::MainWindow *ui;
+
+signals:
+    void sendData(QString, QString, QString);
 };
 #endif // MAINWINDOW_H

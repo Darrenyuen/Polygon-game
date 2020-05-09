@@ -14,12 +14,23 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    MainWindow *mw = new MainWindow();
+    connect(mw, SIGNAL(sendData(QString, QString, QString)), this, SLOT(receiveData(QString, QString, QString)));
+    //    mw->show();
 //    paintEvent();
 }
 
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::receiveData(QString sumOfNodes, QString valueOfNodes, QString opCharsOfEdge)
+{
+    qDebug() << "receiveData";
+    qDebug() << sumOfNodes;
+    qDebug() << valueOfNodes;
+    qDebug() << opCharsOfEdge;
 }
 
 void Dialog::paintEvent(QPaintEvent *event)
@@ -29,7 +40,7 @@ void Dialog::paintEvent(QPaintEvent *event)
 //    painter.setPen(QPen(Qt::black, 4, Qt::DashDotLine, Qt::RoundCap));
 //    painter.setPen(QPainter::Antialiasing);
     //绘制多边形
-    qDebug() << "draw polygon";
+//    qDebug() << "draw polygon";
 //    painter.setBrush(Qt::NoBrush);
 //    const static QPoint polygon[5] = {QPoint(100, 90), QPoint(100, 120), QPoint(220, 200), QPoint(430, 190), QPoint(620, 90)};
 //    painter.drawPolygon(polygon, 5);
@@ -67,7 +78,7 @@ void Dialog::paintEvent(QPaintEvent *event)
        //开始绘制多边形，并为每个区块上色
        for (int i = 0; i < count; ++i)
        {
-           qDebug() << count;
+//           qDebug() << count;
            //设中心点到边的垂线与半径的夹角为degree=(360/count)/2即：
            float degree = 180./count;
 
@@ -88,10 +99,10 @@ void Dialog::paintEvent(QPaintEvent *event)
            path.lineTo(wid, -hei);
            path.lineTo(0, 0);
            painter.drawPath(path);
-           if(i == 3) {
-               qDebug() << wid;
-               qDebug() << hei;
-           }
+//           if(i == 3) {
+//               qDebug() << wid;
+//               qDebug() << hei;
+//           }
 
            //并在该区域内绘制文字
            QFont font;

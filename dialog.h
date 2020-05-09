@@ -26,6 +26,8 @@ private slots:
 
     void on_sumbit_clicked();
 
+    void receiveData(QString sumOfNodes, QString valueOfNodes, QString opCharsOfEdge);
+
 private:
     Ui::Dialog *ui;
 };
